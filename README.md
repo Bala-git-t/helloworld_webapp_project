@@ -6,6 +6,10 @@ This sample demonstrates a tiny Hello World .NET Core app for [App Service Web A
 
 Using the Azure CLI, log in to the Azure Container Registry (ACR):
 
+
+
+
+
 ```azurecli
 az acr login -n <your_registry_name>
 ```
