@@ -1,0 +1,25 @@
+name: deploy dotnet application
+
+on:
+    push:
+        branches:
+            - main 
+jobs:
+    build-dotnet:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get the code
+              uses : actions/checkout@v4
+
+            - name: setup donet 10
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: "10.0"
+            - name: get .net dependencies
+              run: dotnet restore
+            - name: build Release
+              run: dotnet build -c Release dotnetcoresample.csproj
+            - name: build publishing
+              run: dotnet publish -c Release -o ./jjk/ dotnetcoresample.csproj
+            - name: tar the file
+              run: tar -cvzf dotnetcoresample.tar.gz ./jjk/
